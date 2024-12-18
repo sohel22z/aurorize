@@ -1,0 +1,11 @@
+apps:
+       - name: laravel10-queue-work
+         script: artisan
+         exec_mode: fork
+         interpreter: php
+         instances: 1
+         args:
+               - queue:work
+               - --tries=1
+               - --sleep=1
+

@@ -1,0 +1,839 @@
+{
+	"info": {
+		"_postman_id": "a08c8148-496d-4250-91f6-8d7769728f83",
+		"name": "Laravel Basic API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18896697"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code===200){\r",
+									"    pm.collectionVariables.set('authtoken',pm.response.json().result.token)\r",
+									"}\r",
+									"\r",
+									"// plateform - android or iOS"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Plateform",
+								"value": "android",
+								"description": "android or iOS",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"user@gmail.com\",\r\n    \"password\":\"123456789\",\r\n    \"fcm_token\": \"\",\r\n\t\"plateform\": \"android\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Plateform",
+								"value": "android",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"CK\",\r\n    \"email\": \"ck@gmail.com\",\r\n    \"password\": \"123456789\",\r\n    \"country_code\": 91,\r\n    \"phone_number\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Plateform",
+								"value": "android",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\":\"chetan@mailinator.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/forgot-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rreset password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Plateform",
+								"value": "android",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"code\":\"734979\",\r\n\t\"password\":\"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/reset-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Plateform",
+								"value": "android",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fcm_token\": \"\",\r\n\t\"plateform\": \"android\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check email verified",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Plateform",
+								"value": "android",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/check-email-verified",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"check-email-verified"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resend verification link",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"type": "text",
+								"value": "1.0"
+							},
+							{
+								"key": "Plateform",
+								"type": "text",
+								"value": "android"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/resend-verification-link",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resend-verification-link"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resend code",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Plateform",
+								"value": "android",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/resend-code",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resend-code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verification",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"type": "text",
+								"value": "1.0"
+							},
+							{
+								"key": "Plateform",
+								"type": "text",
+								"value": "android"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "url",
+									"value": "http://localhost:8080/tym/public/email/verify/8?expires=1582792536&signature=3e8657aa02ba61ab0e1f654bd272f2d0014f8d18f2fa4c92ceec4c5614c87277",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/verification",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"verification"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User profile",
+			"item": [
+				{
+					"name": "Complete profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//email can't be editable"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Plateform",
+								"value": "android",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"CK\",\r\n    \"email\": \"ckk@gmail.com\",\r\n    \"password\": \"123456789\",\r\n    \"country_code\": 91,\r\n    \"phone_number\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/complete-profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"complete-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Plateform",
+								"value": "android",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// email can't be editable\r",
+									"// If you want to add or update profile photo then pass `photo` parameter in string. First you need to call `upload-profile-picture` API."
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Plateform",
+								"value": "android",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"CK\",\r\n    \"email\": \"ckk@gmail.com\",\r\n    \"password\": \"123456789\",\r\n    \"country_code\": 91,\r\n    \"phone_number\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/update-profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"update-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload profile picture",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This API is for upload photo, it will not update photo in the user. I you want to update profile photo then please pass `photo` param in update or complete profile API which is give in this API response.\r",
+									"/*\r",
+									"This API return this type of response\r",
+									"{\r",
+									"    \"status\": 200,\r",
+									"    \"message\": \"\",\r",
+									"    \"result\": \"Img-2022123004313996.png\"\r",
+									"}\r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Plateform",
+								"value": "android",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profile_picture",
+									"type": "file",
+									"src": "/C:/Users/chetan/Downloads/hairstyle.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/upload-profile-picture",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"upload-profile-picture"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Plateform",
+								"value": "android",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"current_password\": \"123456789\",\r\n\t\"password\":\"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/change-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contact",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authtoken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "AppVersion",
+						"value": "1.0",
+						"type": "text"
+					},
+					{
+						"key": "Plateform",
+						"value": "android",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"subject\":\"test\",\r\n\t\"message\":\"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/contact",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"contact"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Terms conditions",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "AppVersion",
+						"value": "1.0",
+						"type": "text"
+					},
+					{
+						"key": "Plateform",
+						"value": "android",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/terms-conditions",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"terms-conditions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "About us",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "AppVersion",
+						"type": "text",
+						"value": "1.0"
+					},
+					{
+						"key": "Plateform",
+						"type": "text",
+						"value": "android"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/about-us",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"about-us"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Privacy policy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "AppVersion",
+						"type": "text",
+						"value": "1.0"
+					},
+					{
+						"key": "Plateform",
+						"type": "text",
+						"value": "android"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/privacy-policy",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"privacy-policy"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8000/api",
+			"type": "string"
+		},
+		{
+			"key": "authtoken",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
